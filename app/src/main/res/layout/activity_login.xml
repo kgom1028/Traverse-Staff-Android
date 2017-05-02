@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dip"
+            android:orientation="vertical"
+            android:padding="10dip">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:background="@drawable/logo_new"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="TRAVEASE\n ASSOCIATES"
+                android:gravity="center"
+                android:textSize="30dp"/>
+
+            <!--  Email Label -->
+            <EditText
+                android:id="@+id/email_idET"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="50dip"
+                android:background="@drawable/rounded_edittext"
+                android:hint="Email Address"
+                android:textSize="16dp"
+                android:inputType="textEmailAddress"
+                android:gravity="center"
+                />
+
+            <!--  Password Label -->
+
+            <EditText
+                android:id="@+id/passET"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_edittext"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textSize="16dp"
+                android:gravity="center"
+                android:layout_marginTop="15dip"
+                />
+
+            <!-- Signin button -->
+            <Button
+                android:id="@+id/loginBT"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textAllCaps="false"
+                android:textSize="16dp"
+                android:text="Sign in"
+                android:textColor="@color/white"
+                android:layout_marginTop="15dip"
+                android:background="@drawable/button_img"
+                />
+
+            <!-- Link to Forgot Screen -->
+            <TextView
+                android:id="@+id/forgotTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:text="Forgot Password?"
+                android:textColor="#0b84aa"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

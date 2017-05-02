@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <include layout="@layout/toolbar" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Line_Color">
+        </View>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="15dp"
+            android:background="@color/light_grey"
+            android:gravity="left|center"
+            android:textColor="@color/dark_gry"
+            android:text="1. Sample text"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/tvCleaningDot1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="\u25CF"
+                android:singleLine="false"
+                />
+            <TextView android:id="@+id/tvCleaningFirst"
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum is simply dummby text of the printing and typesetting industry.Lorem Ipsum is simply dummby text of the printing and typesetting industry."
+                android:layout_width="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:singleLine="false"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="15dp"
+            android:background="@color/light_grey"
+            android:gravity="left|center"
+            android:textColor="@color/dark_gry"
+            android:text="2. Sample text"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="\u25CF"
+                android:singleLine="false"
+                />
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum is simply dummby text of the printing and typesetting industry.Lorem Ipsum is simply dummby text of the printing and typesetting industry."
+                android:layout_width="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:singleLine="false"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="15dp"
+            android:background="@color/light_grey"
+            android:gravity="left|center"
+            android:textColor="@color/dark_gry"
+            android:text="3. Sample text"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="\u25CF"
+                android:singleLine="false"
+                />
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum is simply dummby text of the printing and typesetting industry.Lorem Ipsum is simply dummby text of the printing and typesetting industry."
+                android:layout_width="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:singleLine="false"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="15dp"
+            android:background="@color/light_grey"
+            android:gravity="left|center"
+            android:textColor="@color/dark_gry"
+            android:text="4. Sample text"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="\u25CF"
+                android:singleLine="false"
+                />
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum is simply dummby text of the printing and typesetting industry.Lorem Ipsum is simply dummby text of the printing and typesetting industry."
+                android:layout_width="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:singleLine="false"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

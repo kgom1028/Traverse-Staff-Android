@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <include layout="@layout/toolbar" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Line_Color">
+        </View>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="15dp"
+            android:background="@color/light_grey"
+            android:gravity="left|center"
+            android:textColor="@color/dark_gry"
+            android:text="1. Important"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/tvCleaningDot1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="\u25CF"
+                android:singleLine="false"
+                />
+            <TextView android:id="@+id/tvCleaningFirst"
+                android:layout_height="wrap_content"
+                android:text="Please read these terms and condition carefully."
+                android:layout_width="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:singleLine="false"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="\u25CF"
+                android:singleLine="false"
+                />
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="All bookings made via Participating Websites or  with Mantra Group directly are made subject to  these terms and conditions and the person  making the booking will be deemed to have  accepted these Terms and Conditions on behalf  of all persons who will be staying at the  Participating Property under the booking once  any payment is made in relation to the booking."
+                android:layout_width="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:singleLine="false"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="15dp"
+            android:background="@color/light_grey"
+            android:gravity="left|center"
+            android:textColor="@color/dark_gry"
+            android:text="2. Photographic Identification"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="\u25CF"
+                android:singleLine="false"
+                />
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="When you check-in you may be asked to provide  photographic identification."
+                android:layout_width="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:singleLine="false"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="\u25CF"
+                android:singleLine="false"
+                />
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="If you are unable to provide such identification  your booking may be cancelled and you may be  liable to pay Mantra Group an amount equal to  the full booking amount plus any other costs  incurred by Mantra Group in connection with the  booking. Accordingly, any pre-payment you have  made in relation to the booking will be forfeited  to Mantra Group under this term."
+                android:layout_width="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:singleLine="false"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="15dp"
+            android:background="@color/light_grey"
+            android:gravity="left|center"
+            android:textColor="@color/dark_gry"
+            android:text="3. Payment"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="\u25CF"
+                android:singleLine="false"
+                />
+            <TextView
+                android:layout_height="wrap_content"
+
+                android:text="Payments for bookings at Participating Properties  in Australia and New Zealand may be made using  Gift Cards."
+                android:layout_width="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:singleLine="false"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

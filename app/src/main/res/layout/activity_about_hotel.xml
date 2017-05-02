@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <include layout="@layout/toolbar" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Line_Color">
+        </View>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@drawable/hotel1"/>
+        <TextView
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Donec soldles nulla vel ante ultricies a consecetur auguepharetra. Fusce eros laoreet eget arcuvel, lobortistincidunt velit"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/facilities_img"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/map_img"
+            android:layout_height="100dp" />
+</LinearLayout>
+    </ScrollView>

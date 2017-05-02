@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:weightSum="1"
+    android:paddingRight="30dp"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        >
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/c01b"
+            >
+            <TextView
+                android:id="@+id/msg"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="njsdfhndj"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="left"
+        android:layout_marginBottom="5dp"
+        >
+        <TextView
+            android:id="@+id/time1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="08:10 AM"
+            android:textColor="@color/grey"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="12dp"
+            />
+    </RelativeLayout>
+</LinearLayout>

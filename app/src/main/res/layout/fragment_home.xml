@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <include layout="@layout/toolbar_home" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/Line_Color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/all_work_BT"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:text="All Work Queue"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:textAllCaps="false"
+            android:background="@drawable/b01"/>
+        <Button
+            android:id="@+id/my_work_BT"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:text="My Work Queue"
+            android:textAllCaps="false"
+            android:textSize="14dp"
+            android:textColor="@color/Line_Color"
+            android:background="@drawable/w02"/>
+
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/frame2"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent"></FrameLayout>
+
+</LinearLayout>

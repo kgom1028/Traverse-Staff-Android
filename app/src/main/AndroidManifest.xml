@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="solutions.it.zanjo.travease">
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <application
+        android:name=".Commons.MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/logo_new"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo_new"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activities.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Activities.LoginActivity" />
+        <activity android:name=".Activities.ForgotPasswordActivity" />
+        <activity android:name=".Activities.ChangePasswordActivity" />
+        <activity android:name=".Activities.ProfileActivity" />
+        <activity android:name=".Activities.HomeActivity" />
+        <activity android:name=".Activities.FilterActivity" />
+        <activity android:name=".Activities.PrivacyPolicyActivity" />
+        <activity android:name=".Activities.HowWorkActivity" />
+        <activity android:name=".Activities.TermsConditionActivity" />
+        <activity android:name=".Activities.AboutHotelActivity" />
+        <activity android:name=".Activities.ReportProblemActivity" />
+        <activity android:name=".Activities.ServiceRequestActivity" />
+        <activity android:name=".Activities.ServiceRequest2Activity" />
+        <activity android:name=".Activities.EscalateActivity" />
+        <activity android:name=".Activities.EscalateRequestActivity" />
+        <activity android:name=".Activities.ReassignActivity" />
+        <activity android:name=".Activities.ReassignRequestActivity" />
+        <activity android:name=".Activities.ChatMessageActivity" />
+        <activity android:name=".Activities.NoInternetActivity"></activity>
+
+    </application>
+
+</manifest>

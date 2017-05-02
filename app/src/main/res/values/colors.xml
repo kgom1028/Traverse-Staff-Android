@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="dark_gry">#4f5051</color>
+    <color name="grey">#cecece</color>
+    <color name="light_grey">#efefef</color>
+    <color name="white">#ffffff</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="black">#000000</color>
+    <color name="edittext_bg">#4481dc</color>
+    <color name="icon_color">#24adc5</color>
+    <color name="Line_Color">#7bcedc</color>
+</resources><!-- #457cd5-->

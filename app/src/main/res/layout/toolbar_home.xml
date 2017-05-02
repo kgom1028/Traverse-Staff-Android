@@ -1,0 +1,62 @@
+<android.support.design.widget.AppBarLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/AppTheme.AppBarOverlay"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:gravity="center_vertical"
+            android:layout_weight="3">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileBT"
+                android:layout_height="48dp"
+                android:layout_width="48dp"
+                android:layout_marginLeft="7dp"
+                android:layout_gravity="center"
+                android:src="@drawable/profile"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="10dp"
+                app:civ_border_width="1dp"
+                app:civ_border_color="#FF000000"/>
+
+            <TextView
+                android:id="@+id/TitleTV"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:ellipsize="middle"
+                android:text="Name"
+                android:paddingRight="20dp"
+                android:gravity="center"
+                android:textColor="@color/Line_Color"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:textSize="18dp"
+                />
+            <ImageView
+                android:id="@+id/filterBT"
+                android:layout_height="32dp"
+                android:layout_width="32dp"
+                android:layout_marginLeft="7dp"
+                android:background="@drawable/filter_img"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+</android.support.design.widget.AppBarLayout>
