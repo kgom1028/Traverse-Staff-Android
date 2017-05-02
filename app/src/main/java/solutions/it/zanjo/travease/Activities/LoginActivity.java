@@ -25,9 +25,11 @@ import java.net.URL;
 
 import solutions.it.zanjo.travease.Commons.Common;
 import solutions.it.zanjo.travease.R;
+import solutions.it.zanjo.travease.Storage.MyPref;
 
 public class LoginActivity extends AppCompatActivity {
 
+    MyPref myPref;
     Button loginBT;
     TextView forgotTV;
     EditText emailET,passET;
@@ -35,10 +37,22 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        myPref=new MyPref();
         loginBT= (Button) findViewById(R.id.loginBT);
         forgotTV= (TextView) findViewById(R.id.forgotTV);
         emailET= (EditText) findViewById(R.id.email_idET);
         passET= (EditText) findViewById(R.id.passET);
+
+        String str = myPref.getData(getApplicationContext(),"email","null");
+        if(str.equals("null"))
+        {
+
+        }
+        else
+        {
+            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+            finish();
+        }
 
         loginBT.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +63,10 @@ public class LoginActivity extends AppCompatActivity {
                         onLoginFailed();
                         return;
                     }
-                    startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+                    myPref.saveData(getApplicationContext(),"email",emailET.getText().toString());
+                    myPref.saveData(getApplicationContext(),"pass",passET.getText().toString());
+                    new LoginTask().execute(Common.SERVER_URL+"login.php?email="+emailET.getText().toString()+"&password="+passET.getText().toString());
+
                 } else  startActivity(new Intent(LoginActivity.this,NoInternetActivity.class));
 
             }
@@ -116,19 +133,28 @@ public class LoginActivity extends AppCompatActivity {
             Log.e("Test", result);
 
             if (result != null) {
+                 try {
 
-
-
-                try {
                     JSONObject jObj = new JSONObject(result);
                     String status=jObj.getString("status");
-                    Log.e("Status", status);
-                    JSONArray jsonArray=jObj.getJSONArray("continent");
+                     if (status.equals("true"))
+                     {
+                         String msg=jObj.getString("message");
+                         String email=jObj.getString("Email");
+                         String pass=jObj.getString("Password");
+                         Toast.makeText(LoginActivity.this, ""+msg, Toast.LENGTH_SHORT).show();
+                         startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+                         finish();
+                     }
+                     else {
+                         onLoginFailed();
+                     }
+                 /*   JSONArray jsonArray=jObj.getJSONArray("continent");
 
                     for (int i=0; i< jsonArray.length(); i++) {
                         JSONObject Obj = jsonArray.getJSONObject(i);
                         String status1 = Obj.getString("status");
-                     }
+                     }*/
                      progressDialog.dismiss();
                 } catch (JSONException e) {
                     e.printStackTrace();

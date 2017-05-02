@@ -11,6 +11,9 @@ import solutions.it.zanjo.travease.Activities.NoInternetActivity;
 
 public class Common {
 
+    public static final String SERVER_URL = "http://zanjo.io/projects/Traverse_api/";
+
+
     private static Context context;
 
 //save the context recievied via constructor in a local variable

@@ -3,10 +3,6 @@ package solutions.it.zanjo.travease.Storage;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by abc on 5/1/2017.
- */
-
 public class MyPref {
 
     SharedPreferences sp;
