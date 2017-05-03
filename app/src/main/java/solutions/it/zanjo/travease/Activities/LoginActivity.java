@@ -1,8 +1,12 @@
 package solutions.it.zanjo.travease.Activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         forgotTV= (TextView) findViewById(R.id.forgotTV);
         emailET= (EditText) findViewById(R.id.email_idET);
         passET= (EditText) findViewById(R.id.passET);
-
+        hasPermissions(this, Common.PERMISSIONS);
         String str = myPref.getData(getApplicationContext(),"email","null");
         if(str.equals("null"))
         {
@@ -65,7 +69,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     myPref.saveData(getApplicationContext(),"email",emailET.getText().toString());
                     myPref.saveData(getApplicationContext(),"pass",passET.getText().toString());
-                    new LoginTask().execute(Common.SERVER_URL+"login.php?email="+emailET.getText().toString()+"&password="+passET.getText().toString());
+
+                        new LoginTask().execute(Common.SERVER_URL+"login.php?email="+emailET.getText().toString()+"&password="+passET.getText().toString());
 
                 } else  startActivity(new Intent(LoginActivity.this,NoInternetActivity.class));
 
@@ -80,6 +85,31 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        ActivityCompat.requestPermissions(LoginActivity.this, Common.PERMISSIONS, Common.MY_PEQUEST_CODE);
+    }
+
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1 && context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
+        if (requestCode == Common.MY_PEQUEST_CODE
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+
+        }
+    }
     class LoginTask extends AsyncTask<String,Void,String> {
         ProgressDialog progressDialog;
 

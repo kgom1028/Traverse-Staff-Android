@@ -1,5 +1,6 @@
 package solutions.it.zanjo.travease.Commons;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -13,7 +14,8 @@ public class Common {
 
     public static final String SERVER_URL = "http://zanjo.io/projects/Traverse_api/";
 
-
+    public static int MY_PEQUEST_CODE = 123;
+    public static String[] PERMISSIONS = {android.Manifest.permission.READ_EXTERNAL_STORAGE,  android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA};
     private static Context context;
 
 //save the context recievied via constructor in a local variable
