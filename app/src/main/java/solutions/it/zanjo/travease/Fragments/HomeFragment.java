@@ -1,12 +1,15 @@
 package solutions.it.zanjo.travease.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +18,29 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import solutions.it.zanjo.travease.Activities.FilterActivity;
+import solutions.it.zanjo.travease.Activities.NoInternetActivity;
 import solutions.it.zanjo.travease.Activities.ProfileActivity;
 import solutions.it.zanjo.travease.Adapter.HomeListAdapter;
 import solutions.it.zanjo.travease.Adapter.NotificationAdapter;
+import solutions.it.zanjo.travease.Commons.Common;
 import solutions.it.zanjo.travease.Fragments.HomeFragments.AllWorkQueueFragment;
 import solutions.it.zanjo.travease.Fragments.HomeFragments.MyWorkQueueFragment;
 import solutions.it.zanjo.travease.R;
+import solutions.it.zanjo.travease.Storage.MyPref;
 
 public class HomeFragment extends Fragment {
 
@@ -33,7 +49,7 @@ public class HomeFragment extends Fragment {
     TextView title;
     ImageView profileBT, filterBT;
     Button allWorkBT, myWorkBT;
-
+  MyPref myPref;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,7 +66,7 @@ public class HomeFragment extends Fragment {
         allWorkBT = (Button) view.findViewById(R.id.all_work_BT);
         myWorkBT = (Button) view.findViewById(R.id.my_work_BT);
         title.setText("No Name");
-
+       myPref=new MyPref();
         profileBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,8 +99,13 @@ public class HomeFragment extends Fragment {
                 displayView(1);
             }
         });
+        if (Common.isInternetOn())
+        {
+            new GetProfileDataTask().execute(Common.SERVER_URL+"getProfileData.php?email="+myPref.getData(getActivity(),"email",""));
+            // Toast.makeText(ChangePasswordActivity.this, "Email: "+myPref.getData(ChangePasswordActivity.this,"email",""), Toast.LENGTH_LONG).show();
+        } else  startActivity(new Intent(getActivity(),NoInternetActivity.class));
 
-       displayView(0);
+        displayView(0);
         return view;
     }
 
@@ -108,5 +129,91 @@ public class HomeFragment extends Fragment {
             fragmentTransaction.commit();
         }
 
+    }
+
+    class GetProfileDataTask extends AsyncTask<String,Void,String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage("\t\tPlease wait...");
+            //progressDialog.show();
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String strUrl = params[0];
+            String result = "";
+
+
+            try {
+                URL url = new URL(strUrl);
+                HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+
+                httpCon.setRequestMethod("POST");
+                httpCon.connect();
+
+                int respCode = httpCon.getResponseCode();
+                if (respCode == HttpURLConnection.HTTP_OK) {
+                    InputStream is = httpCon.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(is);
+                    BufferedReader reader = new BufferedReader(isr);
+
+                    //get all lines of servlet o/p
+                    while (true) {
+                        String str = reader.readLine();
+                        if (str == null)
+                            break;
+                        result = result + str;
+                    }
+                }
+
+            } catch (Exception ex) {
+                Log.e("http error", ex.toString());
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            Log.e("Test", result);
+
+            if (result != null) {
+                try {
+
+                    JSONObject jObj = new JSONObject(result);
+                    String status=jObj.getString("status");
+                    if (status.equals("true"))
+                    {
+//                        String msg=jObj.getString("message");
+//                        String user_id=jObj.getString("user_id");
+//                        emailET.setText(jObj.getString("user_email"));
+                      String  img_path=jObj.getString("image_path");
+//                        firstnameET.setText(jObj.getString("first_name"));
+//                        lastnameET.setText(jObj.getString("last_name"));
+//                        housekeepET.setText(jObj.getString("house_keeping"));
+//                        receptionET.setText(jObj.getString("reception"));
+
+                        Picasso.with(getActivity())
+                                .load(img_path)
+                                .into(profileBT);
+                        //Toast.makeText(ProfileActivity.this, "Get Profile Data", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        //Toast.makeText(ProfileActivity.this, "Profile Update Unsuccessfully", Toast.LENGTH_SHORT).show();
+                    }
+                    //progressDialog.dismiss();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }
     }
 }

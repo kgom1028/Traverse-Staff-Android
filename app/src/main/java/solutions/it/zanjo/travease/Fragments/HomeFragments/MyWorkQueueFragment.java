@@ -29,10 +29,10 @@ public class MyWorkQueueFragment extends Fragment {
         l5.add("Select Latter");
         l5.add("A");
         l5.add("B");
-        HomeListAdapter spa;
-
-        spa = new HomeListAdapter(getActivity().getApplicationContext(), l5);
-        lv1.setAdapter(spa);
+//        HomeListAdapter spa;
+//
+//        spa = new HomeListAdapter(getActivity().getApplicationContext(), l5);
+//        lv1.setAdapter(spa);
         return view;
     }
 }
