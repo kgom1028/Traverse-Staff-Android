@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.widget.Toast;
 
 import solutions.it.zanjo.travease.Activities.LoginActivity;
@@ -28,11 +29,29 @@ public class Common {
     public static final boolean isInternetOn() {
 
         // get Connectivity Manager object to check connection
-        ConnectivityManager connec =
-                (ConnectivityManager) MyApplication.getAppContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+       // ConnectivityManager connec =
+        //        (ConnectivityManager) MyApplication.getAppContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         // Check for network connections
-        if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+        try {
+            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+            if (activeNetwork != null) { // connected to the internet
+                if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                    return true;
+                } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                    // connected to the mobile provider's data plan
+                    return true;
+                }else
+                    return false;
+            } else {
+                return false;
+            }
+        }catch (Exception ex){
+            return true;
+        }
+
+       /* if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
@@ -49,7 +68,7 @@ public class Common {
            // Toast.makeText(MyApplication.getAppContext(), " Not Connected ", Toast.LENGTH_LONG).show();
             return false;
         }
-        return false;
+        return false;*/
     }
 
 
