@@ -34,4 +34,5 @@ dependencies {
     compile 'com.mcxiaoke.volley:library-aar:1.0.0'
     compile files('libs/picasso-2.5.2.jar')
     compile 'ch.acra:acra:4.9.2'
+    compile 'com.google.android.gms:play-services-maps:10.0.1'
 }

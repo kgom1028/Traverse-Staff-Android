@@ -34,6 +34,13 @@ public class ReportProblemActivity extends AppCompatActivity {
         title.setText("Report a Problem");
         ImageView forwordBT=(ImageView)findViewById(R.id.forwordBT);
         forwordBT.setBackgroundResource(R.drawable.next_icon);
+        ImageView backBT= (ImageView) toolbar.findViewById(R.id.backBT);
+        backBT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         forwordBT.setOnClickListener(new View.OnClickListener() {
             @Override

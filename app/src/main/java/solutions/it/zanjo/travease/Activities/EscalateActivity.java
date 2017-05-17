@@ -35,6 +35,7 @@ public class EscalateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(EscalateActivity.this,EscalateRequestActivity.class));
+                finish();
             }
         });
     }

@@ -3,6 +3,7 @@
     package="solutions.it.zanjo.travease">
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -25,6 +26,12 @@
         android:roundIcon="@drawable/logo_new"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDrY9Qn7CAYMfm_8WNP2tspVcEFjTuihAw" />
+
+
         <activity android:name=".Activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

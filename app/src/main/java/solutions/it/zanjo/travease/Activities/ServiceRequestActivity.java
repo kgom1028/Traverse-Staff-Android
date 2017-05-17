@@ -35,6 +35,7 @@ public class ServiceRequestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ServiceRequestActivity.this,ServiceRequest2Activity.class));
+                finish();
             }
         });
     }

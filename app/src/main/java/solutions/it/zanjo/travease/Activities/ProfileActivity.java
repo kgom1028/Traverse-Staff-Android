@@ -135,13 +135,13 @@ public class ProfileActivity extends AppCompatActivity {
         profile_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popup();
+                //popup();
             }
         });
        profile_nameTV.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               uploadImage();
+               //uploadImage();
            }
        });
      saveBT.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +155,7 @@ public class ProfileActivity extends AppCompatActivity {
                      return;
                  }
 
-                 new UpdateProfileTask().execute(Common.SERVER_URL+"update_profile.php?email="+myPref.getData(ProfileActivity.this,"email","")+"&first_name="+firstnameET.getText().toString()+"&last_name="+lastnameET.getText().toString()+"&image_path="+imagePath+"&reception="+receptionET.getText().toString()+"&house_keeping="+housekeepET.getText().toString());
+               //  new UpdateProfileTask().execute(Common.SERVER_URL+"update_profile.php?email="+myPref.getData(ProfileActivity.this,"email","")+"&first_name="+firstnameET.getText().toString()+"&last_name="+lastnameET.getText().toString()+"&image_path="+imagePath+"&reception="+receptionET.getText().toString()+"&house_keeping="+housekeepET.getText().toString());
                  // Toast.makeText(ChangePasswordActivity.this, "Email: "+myPref.getData(ChangePasswordActivity.this,"email",""), Toast.LENGTH_LONG).show();
              } else  startActivity(new Intent(ProfileActivity.this,NoInternetActivity.class));
 

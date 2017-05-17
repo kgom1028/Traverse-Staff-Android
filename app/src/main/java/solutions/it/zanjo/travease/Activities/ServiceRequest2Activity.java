@@ -34,6 +34,7 @@ public class ServiceRequest2Activity extends AppCompatActivity {
         forwordBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(ServiceRequest2Activity.this,ChatMessageActivity.class));
 
             }
         });
@@ -47,19 +48,21 @@ public class ServiceRequest2Activity extends AppCompatActivity {
         completeBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+              finish();
             }
         });
         escalateBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
            startActivity(new Intent(ServiceRequest2Activity.this,EscalateActivity.class));
+                finish();
             }
         });
         reassignBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ServiceRequest2Activity.this,ReassignActivity.class));
+                finish();
 
             }
         });

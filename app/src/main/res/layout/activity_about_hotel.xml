@@ -27,10 +27,15 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/facilities_img"/>
-        <ImageView
-            android:layout_width="wrap_content"
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
             android:layout_marginTop="20dp"
-            android:background="@drawable/map_img"
-            android:layout_height="100dp" />
-</LinearLayout>
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            tools:context="solutions.it.zanjo.googlemap.MapsActivity" />
+
+    </LinearLayout>
     </ScrollView>

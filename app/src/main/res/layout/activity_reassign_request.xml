@@ -144,7 +144,7 @@
             android:textColor="@color/dark_gry"
             android:text="Internal Staff Note"
             android:textSize="18dp"/>
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -162,7 +162,7 @@
             android:textColor="@color/dark_gry"
             android:text="Employee Response"
             android:textSize="18dp"/>
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -176,6 +176,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
+                android:id="@+id/acceptBT"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_marginRight="1dp"
@@ -183,6 +184,7 @@
                 android:background="@drawable/accept_short_button"/>
 
             <Button
+                android:id="@+id/rejectBT"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="45dp"

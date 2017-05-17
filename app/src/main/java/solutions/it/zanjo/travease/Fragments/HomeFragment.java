@@ -190,12 +190,13 @@ public class HomeFragment extends Fragment {
                     String status=jObj.getString("status");
                     if (status.equals("true"))
                     {
-//                        String msg=jObj.getString("message");
+                        //String msg=jObj.getString("message");
 //                        String user_id=jObj.getString("user_id");
 //                        emailET.setText(jObj.getString("user_email"));
-                      String  img_path=jObj.getString("image_path");
-//                        firstnameET.setText(jObj.getString("first_name"));
-//                        lastnameET.setText(jObj.getString("last_name"));
+                        String  img_path=jObj.getString("image_path");
+                        String  firstnameET=jObj.getString("first_name");
+                        String lastnameET=jObj.getString("last_name");
+                        title.setText(firstnameET+" "+lastnameET);
 //                        housekeepET.setText(jObj.getString("house_keeping"));
 //                        receptionET.setText(jObj.getString("reception"));
 

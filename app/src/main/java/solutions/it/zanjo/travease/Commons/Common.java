@@ -34,7 +34,7 @@ public class Common {
 
         // Check for network connections
         try {
-            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager cm = (ConnectivityManager) MyApplication.getAppContext().getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
             if (activeNetwork != null) { // connected to the internet
                 if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {

@@ -37,6 +37,7 @@ public class ReassignActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 startActivity(new Intent(ReassignActivity.this,ReassignRequestActivity.class));
+                finish();
             }
         });
     }
