@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                     myPref.saveData(getApplicationContext(),"email",emailET.getText().toString());
                     myPref.saveData(getApplicationContext(),"pass",passET.getText().toString());
 
-                        new LoginTask().execute(Common.SERVER_URL+"login.php?email="+emailET.getText().toString()+"&password="+passET.getText().toString());
+                        new LoginTask().execute(Common.SERVER_URL+"api/login?email="+emailET.getText().toString()+"&password="+passET.getText().toString());
 
                 } else  startActivity(new Intent(LoginActivity.this,NoInternetActivity.class));
 
@@ -170,8 +170,8 @@ public class LoginActivity extends AppCompatActivity {
                      if (status.equals("true"))
                      {
                          String msg=jObj.getString("message");
-                         String email=jObj.getString("Email");
-                         String pass=jObj.getString("Password");
+//                         String email=jObj.getString("Email");
+//                         String pass=jObj.getString("Password");
                          Toast.makeText(LoginActivity.this, ""+msg, Toast.LENGTH_SHORT).show();
                          startActivity(new Intent(LoginActivity.this,HomeActivity.class));
                          finish();
