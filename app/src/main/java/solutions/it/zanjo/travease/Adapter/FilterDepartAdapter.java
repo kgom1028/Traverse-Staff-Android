@@ -5,25 +5,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import solutions.it.zanjo.travease.Model.Home_Work;
+import solutions.it.zanjo.travease.Activities.FilterActivity;
+import solutions.it.zanjo.travease.Model.ChatList;
+import solutions.it.zanjo.travease.Model.Filter_Depart;
 import solutions.it.zanjo.travease.R;
 
 /**
  * Created by abc on 4/25/2017.
  */
 
-public class HomeListAdapter extends BaseAdapter {
+public class FilterDepartAdapter extends BaseAdapter {
 
-    private Context _context =null;
-    private ArrayList<Home_Work> _addDatas = new ArrayList<Home_Work>();
+    private FilterActivity _context =null;
+    private ArrayList<Filter_Depart> _addDatas = new ArrayList<Filter_Depart>();
 
 
-    public HomeListAdapter(Context _context){
+    public FilterDepartAdapter(FilterActivity _context){
 
         super();
         this._context = _context;
@@ -57,37 +59,29 @@ public class HomeListAdapter extends BaseAdapter {
             addFriendHolder = new AddFriendHolder();
 
             LayoutInflater inflater = (LayoutInflater)_context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.list_item_home, null);
+            convertView = inflater.inflate(R.layout.list_item_filter_depart, null);
 
-            addFriendHolder.view_workTV = (TextView)convertView.findViewById(R.id.view_workTV);
-            addFriendHolder.request_statusTV = (TextView)convertView.findViewById(R.id.request_statusTV);
-            addFriendHolder.timeTV = (TextView)convertView.findViewById(R.id.timeTV);
-           // addFriendHolder.dateTV = (TextView)convertView.findViewById(R.id.dateTV);
-            addFriendHolder.room_noTV = (TextView)convertView.findViewById(R.id.room_noTV);
-
+            addFriendHolder.nameTV = (TextView)convertView.findViewById(R.id.depart_filter_name);
+            addFriendHolder.filter_depart_check=(CheckBox)convertView.findViewById(R.id.depart_filterCB);
 
             convertView.setTag(addFriendHolder);
         }else {
             addFriendHolder = (AddFriendHolder)convertView.getTag();
         }
 
-        final Home_Work friend = _addDatas.get(position);
+        final Filter_Depart friend = _addDatas.get(position);
 
-        addFriendHolder.view_workTV.setText(friend.getView_work());
-        addFriendHolder.request_statusTV.setText(friend.getRequest_status());
-        addFriendHolder.timeTV.setText(friend.getTime());
-        //addFriendHolder.dateTV.setText(friend.getDate());
-        addFriendHolder.room_noTV.setText(friend.getRoom_no());
+        addFriendHolder.nameTV.setText(friend.getName());
 
 
         return convertView;
     }
 
-    public void addItem(Home_Work entity){
+    public void addItem(Filter_Depart entity){
         _addDatas.add(entity);
     }
 
-    public void removeItem(Home_Work entity) {
+    public void removeItem(Filter_Depart entity) {
         _addDatas.remove(entity);
     }
 
@@ -99,7 +93,7 @@ public class HomeListAdapter extends BaseAdapter {
     public class AddFriendHolder {
 
 
-        public TextView view_workTV,request_statusTV,timeTV,room_noTV;
-
+        public TextView nameTV;
+        public CheckBox filter_depart_check;
     }
 }

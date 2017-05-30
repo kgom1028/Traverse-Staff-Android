@@ -54,8 +54,12 @@ public class LoginActivity extends AppCompatActivity {
         }
         else
         {
-            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-            finish();
+            if (Common.isInternetOn())
+            {
+
+                new LoginTask().execute(Common.SERVER_URL+"api/login?email="+myPref.getData(getApplicationContext(),"email","")+"&password="+myPref.getData(getApplicationContext(),"pass",""));
+                Toast.makeText(LoginActivity.this, "URL: "+Common.SERVER_URL+"api/login?email="+myPref.getData(getApplicationContext(),"email","")+"&password="+myPref.getData(getApplicationContext(),"pass",""), Toast.LENGTH_LONG).show();
+            } else  startActivity(new Intent(LoginActivity.this,NoInternetActivity.class));
         }
 
         loginBT.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                     myPref.saveData(getApplicationContext(),"pass",passET.getText().toString());
 
                         new LoginTask().execute(Common.SERVER_URL+"api/login?email="+emailET.getText().toString()+"&password="+passET.getText().toString());
-
+                    Toast.makeText(LoginActivity.this, "URL: "+Common.SERVER_URL+"api/login?email="+emailET.getText().toString()+"&password="+passET.getText().toString(), Toast.LENGTH_LONG).show();
                 } else  startActivity(new Intent(LoginActivity.this,NoInternetActivity.class));
 
             }
@@ -132,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                 URL url = new URL(strUrl);
                 HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
 
-                httpCon.setRequestMethod("POST");
+                httpCon.setRequestMethod("GET");
                 httpCon.connect();
 
                 int respCode = httpCon.getResponseCode();
@@ -161,11 +165,29 @@ public class LoginActivity extends AppCompatActivity {
             super.onPostExecute(result);
 
             Log.e("Test", result);
-
+            Toast.makeText(LoginActivity.this, "Result: "+result, Toast.LENGTH_LONG).show();
             if (result != null) {
                  try {
+                     Toast.makeText(LoginActivity.this, "Result 1: "+result, Toast.LENGTH_LONG).show();
+                     JSONObject jobj=new JSONObject(result);
 
-                    JSONObject jObj = new JSONObject(result);
+                     JSONArray jsonArray=jobj.getJSONArray("id");
+
+                     for (int i = 0; i < jsonArray.length(); i++) {
+
+                         JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                         int id=jsonObject.getInt("id");
+                         myPref.saveData(getApplicationContext(),"user_id", String.valueOf(id));
+//                         String email=jsonObject.getString("email");
+//                         String password=jsonObject.getString("password");
+                         Toast.makeText(LoginActivity.this, "Login Successfully"+id, Toast.LENGTH_SHORT).show();
+
+                         startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+                         finish();
+
+                     }
+                  /*  JSONObject jObj = new JSONObject(result);
                     String status=jObj.getString("status");
                      if (status.equals("true"))
                      {
@@ -178,7 +200,7 @@ public class LoginActivity extends AppCompatActivity {
                      }
                      else {
                          onLoginFailed();
-                     }
+                     }*/
                  /*   JSONArray jsonArray=jObj.getJSONArray("continent");
 
                     for (int i=0; i< jsonArray.length(); i++) {
@@ -188,6 +210,23 @@ public class LoginActivity extends AppCompatActivity {
                      progressDialog.dismiss();
                 } catch (JSONException e) {
                     e.printStackTrace();
+                     progressDialog.dismiss();
+                     onLoginFailed();
+                    // Toast.makeText(LoginActivity.this, "Unsuccessfully 1", Toast.LENGTH_SHORT).show();
+                }
+                try {
+                    JSONObject jObj = new JSONObject(result);
+                    String id=jObj.getString("id");
+                    if (id.equals("false"))
+                    {
+                        onLoginFailed();
+                        progressDialog.dismiss();
+                    }
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                    Toast.makeText(LoginActivity.this, "email id & password Invalid", Toast.LENGTH_SHORT).show();
                 }
 
 

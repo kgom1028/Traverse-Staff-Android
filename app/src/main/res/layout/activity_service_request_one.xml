@@ -38,6 +38,7 @@
         android:text="Service type"/>
 
     <TextView
+        android:id="@+id/serviceTypeTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/grey"
@@ -60,6 +61,7 @@
                 android:text="Guest name"/>
 
             <TextView
+                android:id="@+id/guest_nameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/grey"
@@ -83,6 +85,7 @@
                 android:text="Room number"/>
 
             <TextView
+                android:id="@+id/room_noTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/grey"
@@ -106,6 +109,7 @@
                 android:text="Service code"/>
 
             <TextView
+                android:id="@+id/serviceCodeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/grey"

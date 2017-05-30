@@ -70,7 +70,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         return;
                     }
 
-                    new ChangePassTask().execute(Common.SERVER_URL+"Change_Password.php?email="+myPref.getData(ChangePasswordActivity.this,"email","")+"&password="+oldPassET.getText().toString()+"&newpassword="+newPassET.getText().toString());
+                    new ChangePassTask().execute(Common.SERVER_URL+"api/updatepassword/"+myPref.getData(ChangePasswordActivity.this,"user_id","")+"?password="+newPassET.getText().toString());
                    // Toast.makeText(ChangePasswordActivity.this, "Email: "+myPref.getData(ChangePasswordActivity.this,"email",""), Toast.LENGTH_LONG).show();
                 } else  startActivity(new Intent(ChangePasswordActivity.this,NoInternetActivity.class));
 
@@ -141,7 +141,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     if (status.equals("true"))
                     {
                         String msg=jObj.getString("message");
-                        String email=jObj.getString("email");
+                       // String email=jObj.getString("email");
                         Toast.makeText(ChangePasswordActivity.this, ""+msg, Toast.LENGTH_SHORT).show();
 //                        Toast.makeText(ForgotPasswordActivity.this, ""+pass, Toast.LENGTH_LONG).show();
                         finish();

@@ -33,6 +33,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -113,8 +114,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (Common.isInternetOn())
         {
-            new GetProfileDataTask().execute(Common.SERVER_URL+"getProfileData.php?email="+myPref.getData(ProfileActivity.this,"email",""));
-            // Toast.makeText(ChangePasswordActivity.this, "Email: "+myPref.getData(ChangePasswordActivity.this,"email",""), Toast.LENGTH_LONG).show();
+            new GetProfileDataTask().execute(Common.SERVER_URL+"api/getprofiledata/"+myPref.getData(ProfileActivity.this,"email",""));
+            new GetProfileDepartmentTask().execute(Common.SERVER_URL+"api/getprofiledata_department/"+myPref.getData(ProfileActivity.this,"user_id",""));
+             Toast.makeText(ProfileActivity.this, "Email: "+myPref.getData(ProfileActivity.this,"email",""), Toast.LENGTH_LONG).show();
         } else  startActivity(new Intent(ProfileActivity.this,NoInternetActivity.class));
 
 
@@ -388,7 +390,7 @@ public class ProfileActivity extends AppCompatActivity {
                 URL url = new URL(strUrl);
                 HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
 
-                httpCon.setRequestMethod("POST");
+                httpCon.setRequestMethod("GET");
                 httpCon.connect();
 
                 int respCode = httpCon.getResponseCode();
@@ -422,18 +424,22 @@ public class ProfileActivity extends AppCompatActivity {
                 try {
 
                     JSONObject jObj = new JSONObject(result);
-                    String status=jObj.getString("status");
-                    if (status.equals("true"))
-                    {
-                        String msg=jObj.getString("message");
-                        String user_id=jObj.getString("user_id");
-                        emailET.setText(jObj.getString("user_email"));
-                        img_path=jObj.getString("image_path");
-                        firstnameET.setText(jObj.getString("first_name"));
-                        lastnameET.setText(jObj.getString("last_name"));
-                        housekeepET.setText(jObj.getString("house_keeping"));
-                        receptionET.setText(jObj.getString("reception"));
+                    JSONArray jsonArray=jObj.getJSONArray("data");
 
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                        int id = jsonObject.getInt("id");
+                        emailET.setText(jsonObject.getString("email"));
+                        passET.setText(jsonObject.getString("password"));
+                        firstnameET.setText(jsonObject.getString("firstname"));
+                        lastnameET.setText(jsonObject.getString("lastname"));
+                        profile_nameTV.setText(jsonObject.getString("firstname")+" "+jsonObject.getString("lastname"));
+
+                    }
+
+                 /*
                         Picasso.with(ProfileActivity.this)
                                 .load(img_path)
                                 .into(profile_img);
@@ -441,10 +447,12 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                     else {
                         //Toast.makeText(ProfileActivity.this, "Profile Update Unsuccessfully", Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
                     progressDialog.dismiss();
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    progressDialog.dismiss();
+                    Toast.makeText(ProfileActivity.this, "Profile Update Unsuccessfully", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -527,5 +535,160 @@ public class ProfileActivity extends AppCompatActivity {
         //Adding request to the queue
         requestQueue.add(stringRequest);
     }
+
+
+    class GetProfileDepartmentTask extends AsyncTask<String,Void,String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(ProfileActivity.this);
+            progressDialog.setMessage("\t\tPlease wait...");
+            progressDialog.show();
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String strUrl = params[0];
+            String result = "";
+
+
+            try {
+                URL url = new URL(strUrl);
+                HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+
+                httpCon.setRequestMethod("POST");
+                httpCon.connect();
+
+                int respCode = httpCon.getResponseCode();
+                if (respCode == HttpURLConnection.HTTP_OK) {
+                    InputStream is = httpCon.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(is);
+                    BufferedReader reader = new BufferedReader(isr);
+
+                    //get all lines of servlet o/p
+                    while (true) {
+                        String str = reader.readLine();
+                        if (str == null)
+                            break;
+                        result = result + str;
+                    }
+                }
+
+            } catch (Exception ex) {
+                Log.e("http error", ex.toString());
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            Log.e("Test", result);
+
+            if (result != null) {
+                try {
+
+                    JSONArray jsonArray=new JSONArray(result);
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                        int user_id = jsonObject.getInt("user_id");
+                        String department_id = jsonObject.getString("department_id");
+                        new GetProfileDepartment1Task().execute(Common.SERVER_URL+"api/get_departmentdata/"+department_id);
+                    }
+                    progressDialog.dismiss();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                    Toast.makeText(ProfileActivity.this, "Profile Department Update Unsuccessfully", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        }
+    }
+    class GetProfileDepartment1Task extends AsyncTask<String,Void,String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(ProfileActivity.this);
+            progressDialog.setMessage("\t\tPlease wait...");
+            progressDialog.show();
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String strUrl = params[0];
+            String result = "";
+
+
+            try {
+                URL url = new URL(strUrl);
+                HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+
+                httpCon.setRequestMethod("POST");
+                httpCon.connect();
+
+                int respCode = httpCon.getResponseCode();
+                if (respCode == HttpURLConnection.HTTP_OK) {
+                    InputStream is = httpCon.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(is);
+                    BufferedReader reader = new BufferedReader(isr);
+
+                    //get all lines of servlet o/p
+                    while (true) {
+                        String str = reader.readLine();
+                        if (str == null)
+                            break;
+                        result = result + str;
+                    }
+                }
+
+            } catch (Exception ex) {
+                Log.e("http error", ex.toString());
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            Log.e("Test", result);
+
+            if (result != null) {
+                try {
+
+                    JSONArray jsonArray=new JSONArray(result);
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                        String name = jsonObject.getString("name");
+                        receptionET.setText(name);
+
+                    }
+                    progressDialog.dismiss();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                    Toast.makeText(ProfileActivity.this, "Profile Department Update Unsuccessfully", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        }
+    }
+
 
 }
