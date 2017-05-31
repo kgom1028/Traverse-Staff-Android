@@ -29,9 +29,12 @@ import solutions.it.zanjo.travease.Commons.Common;
 import solutions.it.zanjo.travease.Fragments.HomeFragments.AllWorkQueueFragment;
 import solutions.it.zanjo.travease.Model.Filter_Depart;
 import solutions.it.zanjo.travease.R;
+import solutions.it.zanjo.travease.Storage.MyPref;
 
 public class FilterActivity extends AppCompatActivity {
 
+
+    MyPref myPref;
     FilterDepartAdapter filterDepartAdapter;
     ListView filter_depart_list;
     CheckBox newReqCB,assignCB,asignTootherCB,problemCB;
@@ -44,6 +47,7 @@ public class FilterActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        myPref=new MyPref();
         filter_depart_list=(ListView)findViewById(R.id.filter_depart_list);
         newReqCB=(CheckBox)findViewById(R.id.newReqCB);
         assignCB=(CheckBox)findViewById(R.id.assignCB);
@@ -73,6 +77,17 @@ public class FilterActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    public void Check(int id)
+    {
+
+        Toast.makeText(FilterActivity.this, "Department: "+id, Toast.LENGTH_SHORT).show();
+        if (Common.isInternetOn())
+        {
+            new GetFilterTask().execute(Common.SERVER_URL+"api/get_filter/"+id);
+        } else startActivity(new Intent(FilterActivity.this,NoInternetActivity.class));
     }
 
     @Override
@@ -153,6 +168,95 @@ public class FilterActivity extends AppCompatActivity {
                     }
                     filter_depart_list.setAdapter(filterDepartAdapter);
                     filterDepartAdapter.notifyDataSetChanged();
+                    progressDialog.dismiss();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                    Toast.makeText(FilterActivity.this, "Get Data Unsuccessfully", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        }
+    }
+
+    class GetFilterTask extends AsyncTask<String,Void,String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(FilterActivity.this);
+            progressDialog.setMessage("\t\tPlease wait...");
+            progressDialog.show();
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String strUrl = params[0];
+            String result = "";
+
+
+            try {
+                URL url = new URL(strUrl);
+                HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+
+                httpCon.setRequestMethod("GET");
+                httpCon.connect();
+
+                int respCode = httpCon.getResponseCode();
+                if (respCode == HttpURLConnection.HTTP_OK) {
+                    InputStream is = httpCon.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(is);
+                    BufferedReader reader = new BufferedReader(isr);
+
+                    //get all lines of servlet o/p
+                    while (true) {
+                        String str = reader.readLine();
+                        if (str == null)
+                            break;
+                        result = result + str;
+                    }
+                }
+
+            } catch (Exception ex) {
+                Log.e("http error", ex.toString());
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            Log.e("Test", result);
+
+            if (result != null) {
+                try {
+
+                    JSONArray jsonArray = new JSONArray(result);
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        JSONObject jsonUser = jsonArray.getJSONObject(i);
+                        int guest_id = jsonUser.getInt("guest_id");
+                        int reservation_id = jsonUser.getInt("reservation_id");
+                        int department_id = jsonUser.getInt("department_id");
+                        int service_id = jsonUser.getInt("service_id");
+                        int responsible_id = jsonUser.getInt("responsible_id");
+
+                        myPref.saveData(FilterActivity.this,"res_id",reservation_id);
+                        myPref.saveData(FilterActivity.this,"ser_id",service_id);
+
+                        Intent returnIntent = new Intent();
+                        returnIntent.putExtra("reservation_id",reservation_id+"");
+                        returnIntent.putExtra("service_id",service_id+"");
+                        setResult(RESULT_OK,returnIntent);
+                        finish();
+
+                    }
+
                     progressDialog.dismiss();
                 } catch (JSONException e) {
                     e.printStackTrace();

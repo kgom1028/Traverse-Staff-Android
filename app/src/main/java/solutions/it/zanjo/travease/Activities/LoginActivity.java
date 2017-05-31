@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             {
 
                 new LoginTask().execute(Common.SERVER_URL+"api/login?email="+myPref.getData(getApplicationContext(),"email","")+"&password="+myPref.getData(getApplicationContext(),"pass",""));
-                Toast.makeText(LoginActivity.this, "URL: "+Common.SERVER_URL+"api/login?email="+myPref.getData(getApplicationContext(),"email","")+"&password="+myPref.getData(getApplicationContext(),"pass",""), Toast.LENGTH_LONG).show();
+               // Toast.makeText(LoginActivity.this, "URL: "+Common.SERVER_URL+"api/login?email="+myPref.getData(getApplicationContext(),"email","")+"&password="+myPref.getData(getApplicationContext(),"pass",""), Toast.LENGTH_LONG).show();
             } else  startActivity(new Intent(LoginActivity.this,NoInternetActivity.class));
         }
 
@@ -165,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
             super.onPostExecute(result);
 
             Log.e("Test", result);
-            Toast.makeText(LoginActivity.this, "Result: "+result, Toast.LENGTH_LONG).show();
+           // Toast.makeText(LoginActivity.this, "Result: "+result, Toast.LENGTH_LONG).show();
             if (result != null) {
                  try {
                      Toast.makeText(LoginActivity.this, "Result 1: "+result, Toast.LENGTH_LONG).show();

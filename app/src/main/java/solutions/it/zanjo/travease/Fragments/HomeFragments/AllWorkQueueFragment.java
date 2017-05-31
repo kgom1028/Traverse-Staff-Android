@@ -35,6 +35,7 @@ import solutions.it.zanjo.travease.Adapter.HomeListAdapter;
 import solutions.it.zanjo.travease.Commons.Common;
 import solutions.it.zanjo.travease.Model.Home_Work;
 import solutions.it.zanjo.travease.R;
+import solutions.it.zanjo.travease.Storage.MyPref;
 
 
 public class AllWorkQueueFragment extends Fragment {
@@ -44,6 +45,8 @@ public class AllWorkQueueFragment extends Fragment {
     int id=1;
     String service_id="",reservation_id="",guest_id="";
     HomeListAdapter homeListAdapter;
+    MyPref myPref;
+    String res_frag_id,service_frag_id;
 
     @Nullable
     @Override
@@ -51,6 +54,10 @@ public class AllWorkQueueFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_all_work, container, false);
         lv1 = (ListView) view.findViewById(R.id.listview);
+           myPref=new MyPref();
+              myPref.ClearID(getActivity());
+//        res_frag_id=getArguments().getString("reservation_id");
+//        service_frag_id=getArguments().getString("service_id");
 
         homeListAdapter=new HomeListAdapter(getActivity());
         lv1.setAdapter(homeListAdapter);
@@ -73,6 +80,20 @@ public class AllWorkQueueFragment extends Fragment {
             new AllWorkDataTask().execute(Common.SERVER_URL+"api/all_work");
         }else  startActivity(new Intent(getActivity(),NoInternetActivity.class));
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+        Toast.makeText(getActivity(), "res_frag_id & service_frag_id"+myPref.getData(getActivity(),"res_id",0)+", "+myPref.getData(getActivity(),"ser_id",0), Toast.LENGTH_SHORT).show();
+        if (myPref.getData(getActivity(),"res_id",0)!=0 && myPref.getData(getActivity(),"ser_id",0)!=0) {
+            homeListAdapter.clearFriendData();
+            new AllWorkDataTask().execute(Common.SERVER_URL+"api/all_work");
+            new AllWorkReservationDataTask().execute(Common.SERVER_URL + "api/all_work_reservationbyid/" + myPref.getData(getActivity(),"res_id",0));
+            new AllWorkServiceDataTask().execute(Common.SERVER_URL + "api/servicedata_id/" + myPref.getData(getActivity(),"ser_id",0));
+        }
     }
 
     class AllWorkDataTask extends AsyncTask<String,Void,String> {
@@ -140,35 +161,11 @@ public class AllWorkQueueFragment extends Fragment {
                          reservation_id = jsonUser.getString("reservation_id");
                         String department_id = jsonUser.getString("department_id");
                          service_id= jsonUser.getString("service_id");
+                        Toast.makeText(getActivity(), "S_id, r_id & G_id :"+service_id+", "+reservation_id+", "+guest_id, Toast.LENGTH_SHORT).show();
+                        if (myPref.getData(getActivity(),"res_id",0)==0 && myPref.getData(getActivity(),"ser_id",0)==0) {
                         new AllWorkReservationDataTask().execute(Common.SERVER_URL+"api/all_work_reservationbyid/"+reservation_id);
                         new AllWorkServiceDataTask().execute(Common.SERVER_URL+"api/servicedata_id/"+service_id);
-                    }
-                   /* JSONObject jObj = new JSONObject(result);
-                    String status=jObj.getString("status");
-                    if (status.equals("true"))
-                    {
-                        JSONArray jsonArray = jObj.getJSONArray("Get All Work Successfully");
-
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-                            JSONObject jsonUser = jsonArray.getJSONObject(i);
-                            String Id=jsonUser.getString("Id");
-                            String Viewwork=jsonUser.getString("Viewwork");
-                            String Requeststatus=jsonUser.getString("Requeststatus");
-                            String Time=jsonUser.getString("Time");
-                            String Date=jsonUser.getString("Date");
-                            String room_no=jsonUser.getString("room_no");
-
-                            Home_Work home_work=new Home_Work(Id,Viewwork,Requeststatus,Time,Date,room_no);
-                            homeListAdapter.addItem(home_work);
-                        }
-                        lv1.setAdapter(homeListAdapter);
-                        homeListAdapter.notifyDataSetChanged();
-                        //Toast.makeText(getActivity(), "Show Data", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        //Toast.makeText(ProfileActivity.this, "Profile Update Unsuccessfully", Toast.LENGTH_SHORT).show();
-                    }*/
+                    }}
                     progressDialog.dismiss();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -328,7 +325,7 @@ public class AllWorkQueueFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                     progressDialog.dismiss();
-                    Toast.makeText(getActivity(), "Get Reservation Data Unsuccessfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Get Service Data Unsuccessfully", Toast.LENGTH_SHORT).show();
                 }
 
 

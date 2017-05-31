@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -42,10 +43,11 @@ import solutions.it.zanjo.travease.Fragments.HomeFragments.MyWorkQueueFragment;
 import solutions.it.zanjo.travease.R;
 import solutions.it.zanjo.travease.Storage.MyPref;
 
+import static android.app.Activity.RESULT_OK;
+
 public class HomeFragment extends Fragment {
 
-
-
+    String service_id="",reservation_id="";
     TextView title;
     ImageView profileBT, filterBT;
     Button allWorkBT, myWorkBT;
@@ -76,7 +78,7 @@ public class HomeFragment extends Fragment {
         filterBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), FilterActivity.class));
+                startActivityForResult(new Intent(getActivity(), FilterActivity.class),1);
             }
         });
         allWorkBT.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +116,11 @@ public class HomeFragment extends Fragment {
         switch (i) {
             case 0:
                 fragment = new AllWorkQueueFragment();
+                Bundle bundle = new Bundle();
+                Toast.makeText(getActivity(), "Fragment"+reservation_id+", "+service_id, Toast.LENGTH_SHORT).show();
+                bundle.putString("reservation_id",reservation_id);
+                bundle.putString("service_id",service_id);
+                fragment.setArguments(bundle);
                 break;
             case 1:
                 fragment = new MyWorkQueueFragment();
@@ -216,5 +223,18 @@ public class HomeFragment extends Fragment {
 
             }
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode==1 && resultCode==RESULT_OK && data!=null)
+        {
+            reservation_id=data.getStringExtra("reservation_id");
+            service_id=data.getStringExtra("service_id");
+            Toast.makeText(getActivity(), "reservation_id & service_id"+reservation_id+", "+service_id, Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

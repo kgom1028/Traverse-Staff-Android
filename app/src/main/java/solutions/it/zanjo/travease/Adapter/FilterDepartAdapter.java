@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import solutions.it.zanjo.travease.R;
 
 public class FilterDepartAdapter extends BaseAdapter {
 
+    Integer selected_position = -1;
     private FilterActivity _context =null;
     private ArrayList<Filter_Depart> _addDatas = new ArrayList<Filter_Depart>();
 
@@ -51,7 +53,7 @@ public class FilterDepartAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(final int position, View convertView, ViewGroup parent){
 
         AddFriendHolder addFriendHolder;
 
@@ -73,6 +75,27 @@ public class FilterDepartAdapter extends BaseAdapter {
 
         addFriendHolder.nameTV.setText(friend.getName());
 
+        addFriendHolder.filter_depart_check.setChecked(position==selected_position);
+/*
+          if (addFriendHolder.filter_depart_check.isChecked())
+          {
+              _context.Check(friend.getId());
+          }*/
+        addFriendHolder.filter_depart_check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    selected_position =  position;
+                    _context.Check(friend.getId());
+                }
+                else{
+                    selected_position = -1;
+                }
+                notifyDataSetChanged();
+            }
+        });
 
         return convertView;
     }
@@ -89,6 +112,9 @@ public class FilterDepartAdapter extends BaseAdapter {
         _addDatas.clear();
     }
 
+
+    public void Check()
+    {}
 
     public class AddFriendHolder {
 

@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/grey"
         android:textSize="16dp"
-        android:text="House Keeping"/>
+        android:text="type"/>
 
 </LinearLayout>
         <LinearLayout
@@ -126,201 +126,16 @@
             android:textColor="@color/dark_gry"
             android:text="Service Request"
             android:textSize="18dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:textColor="@color/dark_gry"
-                android:textSize="16dp"
-                android:text="Napkins"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.04"
-                android:layout_gravity="bottom"
-                android:layout_height="wrap_content"
-                android:textColor="@color/grey"
-                android:textSize="16dp"
-                android:text="1"/>
-            <TextView
-                android:layout_width="22dp"
-                android:layout_height="24dp"
-                android:layout_gravity="top"
-                android:textColor="@color/grey"
-                android:background="@drawable/scroll"
-                 />
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/grey">
-        </View>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:textColor="@color/dark_gry"
-                android:textSize="16dp"
-                android:text="Extra Pillows"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.04"
-                android:layout_gravity="bottom"
-                android:layout_height="wrap_content"
-                android:textColor="@color/grey"
-                android:textSize="16dp"
-                android:text="2"/>
-            <TextView
-                android:layout_width="22dp"
-                android:layout_height="24dp"
-                android:layout_gravity="top"
-                android:textColor="@color/grey"
-                android:background="@drawable/scroll"
-                />
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/grey">
-        </View>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:textColor="@color/dark_gry"
-                android:textSize="16dp"
-                android:text="Extra towels"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.04"
-                android:layout_gravity="bottom"
-                android:layout_height="wrap_content"
-                android:textColor="@color/grey"
-                android:textSize="16dp"
-                android:text="1"/>
-            <TextView
-                android:layout_width="22dp"
-                android:layout_height="24dp"
-                android:layout_gravity="top"
-                android:textColor="@color/grey"
-                android:background="@drawable/scroll"
-                />
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/grey">
-        </View>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:textColor="@color/dark_gry"
-                android:textSize="16dp"
-                android:text="Extra body wash"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.04"
-                android:layout_gravity="bottom"
-                android:layout_height="wrap_content"
-                android:textColor="@color/grey"
-                android:textSize="16dp"
-                android:text="2"/>
-            <TextView
-                android:layout_width="22dp"
-                android:layout_height="24dp"
-                android:layout_gravity="top"
-                android:textColor="@color/grey"
-                android:background="@drawable/scroll"
-                />
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/grey">
-        </View>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:textColor="@color/dark_gry"
-                android:textSize="16dp"
-                android:text="Extra shampoo"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.04"
-                android:layout_gravity="bottom"
-                android:layout_height="wrap_content"
-                android:textColor="@color/grey"
-                android:textSize="16dp"
-                android:text="2"/>
-            <TextView
-                android:layout_width="22dp"
-                android:layout_height="24dp"
-                android:layout_gravity="top"
-                android:textColor="@color/grey"
-                android:background="@drawable/scroll"
-                />
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/grey">
-        </View>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:background="@color/white"
+           android:orientation="vertical">
+           <ListView
+               android:id="@+id/listview"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"></ListView>
+       </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

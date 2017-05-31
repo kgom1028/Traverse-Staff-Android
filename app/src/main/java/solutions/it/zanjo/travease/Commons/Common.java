@@ -13,7 +13,7 @@ import solutions.it.zanjo.travease.Activities.NoInternetActivity;
 
 public class Common {
 
-    public static final String SERVER_URL = "http://192.168.0.101/mystayapi/api/web/";
+    public static final String SERVER_URL = "http://192.168.0.105/mystayapi/api/web/";
 
     public static int MY_PEQUEST_CODE = 123;
     public static String[] PERMISSIONS = {android.Manifest.permission.READ_EXTERNAL_STORAGE,  android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA};
