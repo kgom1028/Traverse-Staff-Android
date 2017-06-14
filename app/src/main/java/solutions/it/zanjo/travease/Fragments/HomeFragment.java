@@ -103,7 +103,7 @@ public class HomeFragment extends Fragment {
         });
         if (Common.isInternetOn())
         {
-            new GetProfileDataTask().execute(Common.SERVER_URL+"getProfileData.php?email="+myPref.getData(getActivity(),"email",""));
+            new GetProfileDataTask().execute(Common.SERVER_URL+"api/getProfileData.php?email="+myPref.getData(getActivity(),"email",""));
             // Toast.makeText(ChangePasswordActivity.this, "Email: "+myPref.getData(ChangePasswordActivity.this,"email",""), Toast.LENGTH_LONG).show();
         } else  startActivity(new Intent(getActivity(),NoInternetActivity.class));
 

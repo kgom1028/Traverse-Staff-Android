@@ -62,7 +62,7 @@ public class HomeListAdapter extends BaseAdapter {
             addFriendHolder.view_workTV = (TextView)convertView.findViewById(R.id.view_workTV);
             addFriendHolder.request_statusTV = (TextView)convertView.findViewById(R.id.request_statusTV);
             addFriendHolder.timeTV = (TextView)convertView.findViewById(R.id.timeTV);
-           // addFriendHolder.dateTV = (TextView)convertView.findViewById(R.id.dateTV);
+            addFriendHolder.dateTV = (TextView)convertView.findViewById(R.id.dateTV);
             addFriendHolder.room_noTV = (TextView)convertView.findViewById(R.id.room_noTV);
 
 
@@ -75,8 +75,20 @@ public class HomeListAdapter extends BaseAdapter {
 
         addFriendHolder.view_workTV.setText(friend.getView_work());
         addFriendHolder.request_statusTV.setText(friend.getRequest_status());
-        addFriendHolder.timeTV.setText(friend.getTime());
-        //addFriendHolder.dateTV.setText(friend.getDate());
+
+        String date_time=friend.getTime();
+        String ss[]=date_time.split(" ");
+        /*
+         String s = "12:18:00";
+DateFormat f1 = new SimpleDateFormat("HH:mm:ss"); //HH for hour of the day (0 - 23)
+Date d = f1.parse(s);
+DateFormat f2 = new SimpleDateFormat("h:mma");
+f2.format(d).toLowerCase(); // "12:18am"*/
+
+        addFriendHolder.timeTV.setText(ss[1]);
+
+        addFriendHolder.dateTV.setText(ss[0]);
+
         addFriendHolder.room_noTV.setText(friend.getRoom_no());
 
 
@@ -99,7 +111,7 @@ public class HomeListAdapter extends BaseAdapter {
     public class AddFriendHolder {
 
 
-        public TextView view_workTV,request_statusTV,timeTV,room_noTV;
+        public TextView view_workTV,request_statusTV,timeTV,room_noTV,dateTV;
 
     }
 }

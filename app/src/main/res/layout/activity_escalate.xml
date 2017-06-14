@@ -38,11 +38,12 @@
                 android:text="Service type"/>
 
             <TextView
+                android:id="@+id/serviceTypeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/grey"
                 android:textSize="16dp"
-                android:text="House Keeping"/>
+                android:text="N/A"/>
 
         </LinearLayout>
         <LinearLayout
@@ -60,11 +61,12 @@
                 android:text="Guest name"/>
 
             <TextView
+                android:id="@+id/guest_nameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/grey"
                 android:textSize="16dp"
-                android:text="Paul Jonsen"/>
+                android:text="N/A"/>
 
         </LinearLayout>
 
@@ -83,11 +85,12 @@
                 android:text="Room number"/>
 
             <TextView
+                android:id="@+id/room_noTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/grey"
                 android:textSize="16dp"
-                android:text="1301"/>
+                android:text="N/A"/>
 
         </LinearLayout>
 
@@ -106,11 +109,12 @@
                 android:text="Service code"/>
 
             <TextView
+                android:id="@+id/serviceCodeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/grey"
                 android:textSize="16dp"
-                android:text="04147578"/>
+                android:text="N/A"/>
 
         </LinearLayout>
         <LinearLayout
@@ -127,12 +131,14 @@
                 android:textSize="16dp"
                 android:text="Escalate to"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <Spinner
+                android:id="@+id/escalateToSP"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textColor="@color/grey"
                 android:textSize="16dp"
-                android:text="Mr Scott Tiger"/>
+                />
 
         </LinearLayout>
         <TextView

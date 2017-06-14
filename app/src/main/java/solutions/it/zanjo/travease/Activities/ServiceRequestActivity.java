@@ -67,7 +67,13 @@ public class ServiceRequestActivity extends AppCompatActivity {
         acceptBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ServiceRequestActivity.this,ServiceRequest2Activity.class));
+                Intent intent=new Intent(ServiceRequestActivity.this,ServiceRequest2Activity.class);
+                intent.putExtra("type",service_typeTV.getText().toString());
+                intent.putExtra("name",guestTV.getText().toString());
+                intent.putExtra("room",room_noTV.getText().toString());
+                intent.putExtra("code",service_codeTV.getText().toString());
+                intent.putExtra("ser_id",service_id);
+                startActivity(intent);
                 finish();
             }
         });
